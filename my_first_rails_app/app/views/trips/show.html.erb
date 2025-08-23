@@ -1,0 +1,80 @@
+<div class="page-header">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <h1>🌍 <%= @trip.country %></h1>
+      <p><%= @trip.start_date.strftime("%B %d") %> - <%= @trip.end_date.strftime("%B %d, %Y") %> (<%= @trip.duration_days %> days)</p>
+    </div>
+    <div>
+      <%= link_to "Edit Trip", edit_trip_path(@trip), class: "btn btn-secondary" %>
+      <%= link_to "Back to Trips", trips_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Trip Details</h2>
+  </div>
+  <div class="card-body">
+    <div class="grid grid-2">
+      <div>
+        <strong>Country:</strong> <%= @trip.country %>
+      </div>
+      <div>
+        <strong>Duration:</strong> <%= @trip.duration_days %> days
+      </div>
+      <div>
+        <strong>Start Date:</strong> <%= @trip.start_date.strftime("%B %d, %Y") %>
+      </div>
+      <div>
+        <strong>End Date:</strong> <%= @trip.end_date.strftime("%B %d, %Y") %>
+      </div>
+    </div>
+    
+    <% if @trip.description.present? %>
+      <div style="margin-top: 1rem;">
+        <strong>Description:</strong>
+        <p><%= @trip.description %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Hotels (<%= @trip.hotels.count %>)</h2>
+    <%= link_to "Add Hotel", new_trip_hotel_path(@trip), class: "btn btn-success btn-sm" %>
+  </div>
+  
+  <div class="card-body">
+    <% if @trip.hotels.any? %>
+      <div class="hotel-list">
+        <% @trip.hotels.each do |hotel| %>
+          <div class="hotel-item">
+            <div class="hotel-name"><%= hotel.name %></div>
+            <div class="hotel-details">
+              <div>
+                <strong>Price:</strong> <%= number_to_currency(hotel.price, unit: hotel.currency) %> per night
+              </div>
+              <div>
+                <%= link_to "View Hotel", hotel.url, target: "_blank", class: "btn btn-primary btn-sm" %>
+              </div>
+            </div>
+            <div class="hotel-actions">
+              <%= link_to "Edit", edit_hotel_path(hotel), class: "btn btn-secondary btn-sm" %>
+              <%= link_to "Remove", hotel_path(hotel), 
+                  method: :delete, 
+                  data: { confirm: "Are you sure you want to remove this hotel?" },
+                  class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div style="text-align: center; padding: 2rem;">
+        <p>No hotels added yet for this trip.</p>
+        <%= link_to "Add Your First Hotel", new_trip_hotel_path(@trip), class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

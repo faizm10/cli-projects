@@ -1,0 +1,72 @@
+<div class="page-header">
+  <h1>Add Hotel to <%= @trip.country %> Trip</h1>
+  <p>Add accommodation options for your trip</p>
+</div>
+
+<div class="card">
+  <%= form_with(model: [@trip, @hotel], local: true) do |form| %>
+    <% if @hotel.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(@hotel.errors.count, "error") %> prohibited this hotel from being saved:</h4>
+        <ul>
+          <% @hotel.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name, "Hotel Name", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control #{'is-invalid' if @hotel.errors[:name].any?}", placeholder: "e.g., Grand Hotel, Hilton, Airbnb" %>
+      <% if @hotel.errors[:name].any? %>
+        <div class="invalid-feedback"><%= @hotel.errors[:name].first %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :url, "Hotel Website/Booking Link", class: "form-label" %>
+      <%= form.url_field :url, class: "form-control #{'is-invalid' if @hotel.errors[:url].any?}", placeholder: "https://booking.com/hotel/..." %>
+      <% if @hotel.errors[:url].any? %>
+        <div class="invalid-feedback"><%= @hotel.errors[:url].first %></div>
+      <% end %>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="form-group">
+        <%= form.label :price, "Price per Night", class: "form-label" %>
+        <%= form.number_field :price, class: "form-control #{'is-invalid' if @hotel.errors[:price].any?}", step: "0.01", min: "0", placeholder: "150.00" %>
+        <% if @hotel.errors[:price].any? %>
+          <div class="invalid-feedback"><%= @hotel.errors[:price].first %></div>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :currency, "Currency", class: "form-label" %>
+        <%= form.select :currency, 
+            options_for_select([
+              ['USD - US Dollar', 'USD'],
+              ['EUR - Euro', 'EUR'],
+              ['GBP - British Pound', 'GBP'],
+              ['JPY - Japanese Yen', 'JPY'],
+              ['CAD - Canadian Dollar', 'CAD'],
+              ['AUD - Australian Dollar', 'AUD'],
+              ['CHF - Swiss Franc', 'CHF'],
+              ['CNY - Chinese Yuan', 'CNY'],
+              ['INR - Indian Rupee', 'INR'],
+              ['BRL - Brazilian Real', 'BRL']
+            ], @hotel.currency), 
+            { prompt: "Select currency" }, 
+            { class: "form-control #{'is-invalid' if @hotel.errors[:currency].any?}" } %>
+        <% if @hotel.errors[:currency].any? %>
+          <div class="invalid-feedback"><%= @hotel.errors[:currency].first %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "Add Hotel", class: "btn btn-primary" %>
+      <%= link_to "Cancel", trip_path(@trip), class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

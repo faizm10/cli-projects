@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "My First Rails App" %></title>
+    <title><%= content_for(:title) || "Trip Planner" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -23,6 +23,39 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <%= link_to "🌍 Trip Planner", root_path, class: "nav-link" %>
+        </div>
+        <div class="nav-menu">
+          <%= link_to "Trips", trips_path, class: "nav-link" %>
+          <%= link_to "New Trip", new_trip_path, class: "nav-link" %>
+          <%= link_to "All Hotels", hotels_path, class: "nav-link" %>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <% if notice %>
+        <div class="alert alert-success">
+          <%= notice %>
+        </div>
+      <% end %>
+      
+      <% if alert %>
+        <div class="alert alert-danger">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Trip Planner. Plan your perfect adventure!</p>
+      </div>
+    </footer>
   </body>
 </html>
