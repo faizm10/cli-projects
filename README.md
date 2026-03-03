@@ -18,7 +18,11 @@ cd cli-projects
 ./install.sh
 ```
 
-This installs the games to `~/.local/share/cli-games/` and adds a `games` command to `~/.local/bin/`.
+By default the **full project** goes to `~/.local/share/cli-projects/` (same layout as the repo) and a `games` command is added to `~/.local/bin/`. You can install anywhere by setting `INSTALL_ROOT` and optionally `BIN_DIR`:
+
+```bash
+INSTALL_ROOT=~/my-projects/cli-projects BIN_DIR=~/bin curl -sSL https://raw.githubusercontent.com/faizm10/cli-projects/main/install.sh | bash
+```
 
 ## Run
 
@@ -47,5 +51,6 @@ Then open a new terminal or run `source ~/.zshrc` (or `source ~/.bashrc`).
 1. **Number Guess** — Guess a number between 1 and 100. Fewer tries = better.
 2. **Hangman** — Guess the word letter by letter. You get 6 wrong guesses.
 3. **Tic-Tac-Toe** — Two players (X and O). Use positions 1–9 to play.
+4. **Infinity Dino** — Run and jump over cacti (SPACE to jump). Score = obstacles passed.
 
 All games run offline. No dependencies except Bash.
