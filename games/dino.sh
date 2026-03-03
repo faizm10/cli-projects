@@ -3,7 +3,9 @@
 
 WIDTH=50
 DINO_COL=8
-JUMP_FRAMES=10
+# Pace like Chrome offline dino: ~7 fps, comfortable jump timing
+FRAME_SEC=0.14
+JUMP_FRAMES=8
 OBSTACLE_START=48
 
 score=0
@@ -53,9 +55,9 @@ while true; do
   echo ""
   echo "SPACE = jump"
 
-  # Read key (short timeout for game loop)
+  # Read key; frame rate sets game speed (lower = slower, like real dino)
   key=""
-  read -t 0.08 -n 1 -r key 2>/dev/null || true
+  read -t "$FRAME_SEC" -n 1 -r key 2>/dev/null || true
   if [ "$key" = " " ] && [ "$jump_state" -eq 0 ]; then
     jump_state=1
   fi
