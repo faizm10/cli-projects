@@ -28,6 +28,12 @@ From any directory:
 games
 ```
 
+To get the latest version after install:
+
+```bash
+games update
+```
+
 If `games` is not found, add this to your shell config (e.g. `~/.bashrc` or `~/.zshrc`):
 
 ```bash
