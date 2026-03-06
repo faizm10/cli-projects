@@ -33,7 +33,7 @@ else
   curl -sSL "$CLI_GAMES_REPO/install.sh" -o "$INSTALL_ROOT/install.sh"
   curl -sSL "$CLI_GAMES_REPO/games.sh" -o "$INSTALL_ROOT/games.sh"
   curl -sSL "$CLI_GAMES_REPO/README.md" -o "$INSTALL_ROOT/README.md"
-  for name in number_guess.sh hangman.sh tictactoe.sh dino.sh; do
+  for name in number_guess.sh hangman.sh tictactoe.sh dino.sh snake.sh rps.sh memory.sh wordle.sh minesweeper.sh blackjack.sh; do
     curl -sSL "$CLI_GAMES_REPO/games/$name" -o "$INSTALL_ROOT/games/$name"
   done
 fi

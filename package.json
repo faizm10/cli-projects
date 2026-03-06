@@ -1,0 +1,52 @@
+{
+  "name": "@faizm10/cli-games",
+  "version": "2.0.0",
+  "description": "Collection of 10 fun CLI games - play offline, no dependencies, pure Bash",
+  "main": "games.sh",
+  "bin": {
+    "cli-games": "./npm-bin.sh"
+  },
+  "scripts": {
+    "postinstall": "bash ./npm-install.sh"
+  },
+  "keywords": [
+    "cli",
+    "games",
+    "terminal",
+    "offline",
+    "bash",
+    "number-guess",
+    "hangman",
+    "tictactoe",
+    "dino",
+    "snake",
+    "rock-paper-scissors",
+    "memory",
+    "wordle",
+    "minesweeper",
+    "blackjack",
+    "fun",
+    "entertainment"
+  ],
+  "author": "Faiz M",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/faizm10/cli-projects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/faizm10/cli-projects/issues"
+  },
+  "homepage": "https://github.com/faizm10/cli-projects#readme",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "files": [
+    "games.sh",
+    "install.sh",
+    "npm-bin.sh",
+    "npm-install.sh",
+    "games/*.sh",
+    "README.md"
+  ]
+}

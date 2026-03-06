@@ -1,0 +1,19 @@
+# Docker ignore file - exclude unnecessary files from Docker build
+
+.git
+.gitignore
+*.tar.gz
+*.zip
+*.deb
+*.rpm
+node_modules
+.npm
+*.log
+build-*.sh
+docker-build.sh
+cli-games-standalone.sh
+package.json
+npm-*.sh
+cli-games.rb
+*.md
+!README.md
